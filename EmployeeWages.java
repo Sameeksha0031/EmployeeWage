@@ -7,8 +7,8 @@ public class EmployeeWages {
 	int working_DayperMonth = 20;
 	
 	public void computeAttendance() {
-	   int totalWorkinghour = 0;
-	   int days = 0; 
+	   int totalWorkinghour= 0;
+	   int days= 0; 
 	   do {
 		 days = days + 1;
 		 System.out.println(days);
