@@ -2,7 +2,21 @@ package com.EmployeeWage;
 
 public class EmployeeWages {
 	
-	public void computeEmpWage(String company,int wagePerhour, int working_DayperMonth, int fullDayhour) {
+	private String company;
+	private int wagePerhour;
+	private int working_DayperMonth=0;
+	private int fullDayhour;
+	private int totalEmpWage;
+	
+	public EmployeeWages(String company,int wagePerhour,int working_DayperMonth,int fullDayhour ) {
+		this.company = company;
+		this.wagePerhour = wagePerhour;
+		this.working_DayperMonth = working_DayperMonth;
+		this.fullDayhour = fullDayhour;
+	}
+	
+	
+	public void computeEmpWage() {
 		  int totalWorkinghour = 0;
 		  int days = 0; 
 		  System.out.println(company);
@@ -11,11 +25,11 @@ public class EmployeeWages {
 			 int attendance = (int)(Math.random() *10 )%2;
 			 switch(attendance){
 				
-				case 0 : calculateEmployeeWage(wagePerhour,working_DayperMonth, fullDayhour);
+				case 0 : calculateEmployeeWage();
 		    	         break;
 				
 				case 1 : int partTimehour = fullDayhour / 2;
-				         int partTimeWage = partTimehour *wagePerhour*working_DayperMonth;
+				         int partTimeWage = partTimehour * wagePerhour * working_DayperMonth;
 				         System.out.println("Wage Per Hour\t:"+ wagePerhour +
 				                            "\nWorking Days \t:"+ working_DayperMonth +
 				                            "\nWorking Hour \t:"+ partTimehour + 
@@ -33,7 +47,7 @@ public class EmployeeWages {
 	}
 	
 	
-	public void calculateEmployeeWage(int wagePerhour, int working_DayperMonth, int fullDayhour) {
+	public void calculateEmployeeWage() {
 		int dailyWage = wagePerhour * fullDayhour * working_DayperMonth;
 		System.out.println("Wage Per Hour\t:"+ wagePerhour +
 				           "\nWorking Days \t:"+ working_DayperMonth +
@@ -44,9 +58,10 @@ public class EmployeeWages {
 	public static void main(String[] args) {
 		
 		System.out.println(" Welcome to Employee Wage Computation ");
-		EmployeeWages wages = new EmployeeWages();
-		wages.computeEmpWage("Dmart", 200, 2, 20);
-		wages.computeEmpWage("Reliance", 300, 4, 20);
+		EmployeeWages dmart = new EmployeeWages("Dmart", 200, 2, 20);
+		dmart.computeEmpWage();
+		EmployeeWages reliance = new EmployeeWages("Reliance",100,4,20);
+		reliance.computeEmpWage();
 	}
  
 }
