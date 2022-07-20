@@ -1,40 +1,53 @@
-package com.EmployeeWages.java;
-
-import java.util.Random;
+package com.EmployeeWage;
 
 public class EmployeeWages {
 	
-	int wagePerhour = 20;
-	int fullDayhour = 8;
-	int partTimehour = 4;
-	int working_DayperMonth = 20;
+	public void computeEmpWage(String company,int wagePerhour, int working_DayperMonth, int fullDayhour) {
+		  int totalWorkinghour = 0;
+		  int days = 0; 
+		  System.out.println(company);
+	      while (totalWorkinghour <= 100 && days <20 ){
+			 days = days + 1;
+			 int attendance = (int)(Math.random() *10 )%2;
+			 switch(attendance){
+				
+				case 0 : calculateEmployeeWage(wagePerhour,working_DayperMonth, fullDayhour);
+		    	         break;
+				
+				case 1 : int partTimehour = fullDayhour / 2;
+				         int partTimeWage = partTimehour *wagePerhour*working_DayperMonth;
+				         System.out.println("Wage Per Hour\t:"+ wagePerhour +
+				                            "\nWorking Days \t:"+ working_DayperMonth +
+				                            "\nWorking Hour \t:"+ partTimehour + 
+				                            "\nPartime Employee wage is : "+ partTimeWage);
+		    
+		    	         break;
+		    	        
+				default: System.out.println("Employee Wage = 0");        
+		       }
+			 totalWorkinghour = totalWorkinghour + 1;
+			 System.out.println();
+	       }
+	      int totalEmpWage  = totalWorkinghour * wagePerhour * working_DayperMonth;
+	      System.out.println("Total Full time Employee Wage for "+company+" is:" + totalEmpWage);
+	}
+	
+	
+	public void calculateEmployeeWage(int wagePerhour, int working_DayperMonth, int fullDayhour) {
+		int dailyWage = wagePerhour * fullDayhour * working_DayperMonth;
+		System.out.println("Wage Per Hour\t:"+ wagePerhour +
+				           "\nWorking Days \t:"+ working_DayperMonth +
+				           "\nWorking Hour \t:"+ fullDayhour + 
+				           "\nEmployee wage is : "+ dailyWage);
+	}
 	
 	public static void main(String[] args) {
 		
 		System.out.println(" Welcome to Employee Wage Computation ");
-		EmployeeWages obj = new EmployeeWages();
-        Random random = new Random();
-		
-        int attendance = random.nextInt(3);
-        switch(attendance){
-		 
-		case 0 : System.out.println(" Employee is absent ");
-		         break;
-		case 1: System.out.println(" Employee is Present ");
-    	        obj.employeeWage();
-    	        break;
-		case 2: System.out.println(" Part time Employee ");
-    	        System.out.println(" Part time hour : " +obj.partTimehour);
-    	        System.out.println(" Wage for month part time Employee : " + obj.partTimehour * obj.working_DayperMonth);
-    	        break;
-		}
-        
-  	}
-  	
-  	public void employeeWage() {
-  		int dailyWage = wagePerhour * fullDayhour * working_DayperMonth;
-  		System.out.println(" Employee daily wage is : "+ dailyWage);
-  	}
+		EmployeeWages wages = new EmployeeWages();
+		wages.computeEmpWage("Dmart", 200, 2, 20);
+		wages.computeEmpWage("Reliance", 300, 4, 20);
+	}
  
 }
 		
