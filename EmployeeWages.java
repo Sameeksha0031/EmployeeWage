@@ -17,7 +17,7 @@ public class EmployeeWages {
 	public static final int IS_FULL_TIME = 2;
 	
 	private int numOfCompany = 0;
-	private int maxhours_inMonth = 10;
+	private int maxhours_inMonth = 100;
 	private ArrayList<CompanyEmpWage> list;
 	
 	public  EmployeeWages() {
@@ -41,40 +41,42 @@ public class EmployeeWages {
 	public int computeEmpWage(CompanyEmpWage companyEmpWage) {
 		  int totalWorkinghour = 0;
 		  int days = 0; 
-	      int empHrs = 0;	
+	      int empHrs = 0;
+	      int dailyEmpWage=0;
+	      System.out.println();
+	      System.out.println(companyEmpWage.company);
+	      while(totalWorkinghour <= maxhours_inMonth  && days < companyEmpWage.working_DayperMonth ) {
 			 days = days + 1;
 			 int attendance = (int)(Math.random() *10 )%3;
 			 switch(attendance){
 				
 				case IS_PART_TIME : empHrs = 4;
+				                    dailyEmpWage = companyEmpWage.wagePerhour * empHrs;
+				                    System.out.println("Part Time Employee wages :" + 
+		                                    "\nWages Per Hour :\t"+ companyEmpWage.wagePerhour +
+		                                    "\nWorking Days   :\t"+ companyEmpWage.working_DayperMonth+
+		                                    "\nWorking Hour   :\t"+ empHrs +
+		                                    "\nDaily Wage of an Employee : " + dailyEmpWage);
 				                    break;
 				
 				case IS_FULL_TIME : empHrs = 8;
-		                           break;
+				                    dailyEmpWage = companyEmpWage.wagePerhour * empHrs;
+				                    System.out.println("Full Time Employee wages :" + 
+	                                    "\nWages Per Hour :\t"+ companyEmpWage.wagePerhour +
+	                                    "\nWorking Days   :\t"+ companyEmpWage.working_DayperMonth+
+	                                    "\nWorking Hour   :\t"+ empHrs +
+	                                    "\nDaily Wage of an Employee : " + dailyEmpWage);
+				
+		                            break;
 		    	        
-				default: empHrs = 0;        
+				default: empHrs = 0;
+				         System.out.println("Employee wage is zero");
 		       }
 			 totalWorkinghour = totalWorkinghour + empHrs;
 			 System.out.println("");
-			 System.out.println(companyEmpWage.company);
-			 if(empHrs  == 8) {
-			 System.out.println("Full Time Employee wages :" + 
-			                    "\nWages Per Hour \t"+ empHrs +
-			                    "\nWorking Days   \t"+ companyEmpWage.working_DayperMonth+
-			                    "\nWorking Hour   \t"+ companyEmpWage.fullDayhour);
-	        }else if(empHrs == 4) {
-				 System.out.println("Part Time Employee wages :" + 
-		                    "\nWages Per Hour \t"+ empHrs +
-		                    "\nWorking Days   \t"+ companyEmpWage.working_DayperMonth+
-		                    "\nWorking Hour   \t"+ companyEmpWage.fullDayhour);
-			 }else {
-				 System.out.println("Employee wage is zero");
-			 }
-	      return totalWorkinghour *companyEmpWage.working_DayperMonth;
-	     
-	  }//}
-	
-
+	      }
+		return totalWorkinghour * companyEmpWage.wagePerhour ;
+	   }
 	
 	public static void main(String[] args) {
 		
